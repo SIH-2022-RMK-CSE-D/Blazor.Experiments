@@ -1,0 +1,14 @@
+﻿@using Markdig
+@inherits CustomComponentBase
+
+<div class="@Class" style="@Style">
+    @MarkdownContent
+</div>
+
+@code 
+{
+    [Parameter]
+    public string Content { get; set; }
+
+    private MarkupString MarkdownContent => new MarkupString(Markdown.ToHtml(Content, new MarkdownPipelineBuilder().UseAdvancedExtensions().Build()));
+}

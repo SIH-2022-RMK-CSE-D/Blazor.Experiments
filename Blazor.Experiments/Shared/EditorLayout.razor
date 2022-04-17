@@ -1,0 +1,17 @@
+﻿@using Blazor.Experiments.Components.Layouts
+@inherits LayoutComponentBase
+<PageLayout>
+    <NavBar>
+        <LogoContent>
+            <span>Gravity</span>
+        </LogoContent>
+        <NavItemTemplate>
+            <NavItem Href="/" Match=NavLinkMatch.All>Home</NavItem>
+            <NavItem Href="/counter">Counter</NavItem>
+            <NavItem Href="/fetch-data">Fetch Data</NavItem>
+        </NavItemTemplate>
+    </NavBar>
+    <div class="page-wrapper">
+        @Body
+    </div>
+</PageLayout>

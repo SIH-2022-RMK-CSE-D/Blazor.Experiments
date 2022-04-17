@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@inherits CustomComponentBase
+<li class="nav-item @Class" style="@Style">
+    <NavLink class="nav-link" href="@Href" Match="@Match">
+        @if (ChildContent == null)
+        {
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+                @NavLinkIcon
+            </span>
+            <span class="nav-link-title">@NavLinkTitle</span>
+        }
+        else
+        {
+            @ChildContent
+        }
+    </NavLink>
+</li>
+
+@code {
+    [Parameter]
+    public string Href { get; set; }
+
+    [Parameter]
+    public NavLinkMatch Match { get; set; }
+
+    [Parameter]
+    public string NavLinkTitle { get; set; }
+
+    [Parameter]
+    public string NavLinkIcon { get; set; }
+}
