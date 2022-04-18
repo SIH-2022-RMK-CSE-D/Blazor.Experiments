@@ -1,4 +1,4 @@
-﻿namespace Blazor.Experiments.Components;
+﻿namespace Blazor.Experiments.Components.Base;
 
 public abstract class CustomComponentBase : ComponentBase
 {
