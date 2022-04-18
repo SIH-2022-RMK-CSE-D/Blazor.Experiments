@@ -1,6 +1,8 @@
-﻿@using Microsoft.AspNetCore.Components.Routing
+﻿@namespace Blazor.Experiments.Components
+
+@using Microsoft.AspNetCore.Components.Routing
 @inherits CustomComponentBase
-<li class="nav-item @Class" style="@Style">
+<li class="@ClassName" style="@Style">
     <NavLink class="nav-link" href="@Href" Match="@Match">
         @if (ChildContent == null)
         {
@@ -17,11 +19,15 @@
 </li>
 
 @code {
+    protected string ClassName => new CssBuilder().AddClass("nav-item")
+                                                  .AddClass(Class)
+                                                  .ToString();
+
     [Parameter]
     public string Href { get; set; }
 
     [Parameter]
-    public NavLinkMatch Match { get; set; }
+    public NavLinkMatch Match { get; set; } = NavLinkMatch.Prefix;
 
     [Parameter]
     public string NavLinkTitle { get; set; }

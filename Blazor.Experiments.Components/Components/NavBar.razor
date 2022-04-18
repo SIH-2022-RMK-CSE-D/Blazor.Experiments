@@ -1,13 +1,18 @@
-﻿@inherits CustomComponentBase
+﻿@namespace Blazor.Experiments.Components
+
+@inherits CustomComponentBase
 
 <header class="navbar navbar-expand-sm navbar-dark d-print-none" style="@Style">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-            @LogoContent
-        </h1>
+        @if (LogoContent != null)
+        {
+            <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+                @LogoContent
+            </h1>
+        }
         <div class="navbar-nav flex-row order-md-last">
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
@@ -30,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navbar-menu">
             <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                 <ul class="navbar-nav">
-                    @NavItemTemplate
+                    @NavLinks
                 </ul>
             </div>
         </div>
@@ -42,5 +47,8 @@
     public RenderFragment LogoContent { get; set; }
 
     [Parameter]
-    public RenderFragment NavItemTemplate { get; set; }
+    public RenderFragment NavLinks { get; set; }
+
+    [Parameter]
+    public RenderFragment NavBarEndTemplate { get; set; }
 }

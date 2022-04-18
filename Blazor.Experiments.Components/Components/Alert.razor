@@ -1,0 +1,34 @@
+﻿@namespace Blazor.Experiments.Components
+
+@inherits CustomComponentBase
+
+<div class="@ClassName" style="@Style" role="alert" @onclick="@OnClick">
+    @if (ChildContent == null)
+    {
+        <div class="d-flex">
+            @if (!NoIcon)
+            {
+                <div>@((MarkupString)Icon)</div>
+            }
+            <div>
+                <h4 class="alert-title">@Title</h4>
+                @if (MessageContent == null)
+                {
+                    <span class="text-muted">@Message</span>
+                }
+                else
+                {
+                    @MessageContent
+                }
+            </div>
+            @if (Closable)
+            {
+                <a class="btn-close" data-bs-dismiss="alert" aria-label="close"></a>
+            }
+        </div>
+    }
+    else
+    {
+        @ChildContent
+    }
+</div>
