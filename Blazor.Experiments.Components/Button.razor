@@ -1,0 +1,16 @@
+﻿@inherits CustomComponentBase
+<button @onclick=OnClick 
+        type="@ButtonType.ToDescriptionString()" 
+        class="@ClassName" 
+        style="@Style"
+        disabled="@Disabled">
+    @if (!string.IsNullOrEmpty(StartIcon))
+    {
+        @StartIcon
+    }
+    @ChildContent
+    @if (!string.IsNullOrEmpty(EndIcon))
+    {
+        @EndIcon
+    }
+</button>
