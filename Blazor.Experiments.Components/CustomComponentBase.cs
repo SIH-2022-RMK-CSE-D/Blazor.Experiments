@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-
-namespace Blazor.Experiments.Components;
+﻿namespace Blazor.Experiments.Components;
 
 public abstract class CustomComponentBase : ComponentBase
 {
