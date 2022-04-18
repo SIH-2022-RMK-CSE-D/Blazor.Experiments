@@ -1,4 +1,7 @@
-﻿@inherits CustomComponentBase
+﻿@namespace Blazor.Experiments.Components
+
+@inherits CustomComponentBase
+
 <button @onclick=OnClick 
         type="@ButtonType.ToDescriptionString()" 
         class="@ClassName" 
@@ -6,11 +9,11 @@
         disabled="@Disabled">
     @if (!string.IsNullOrEmpty(StartIcon))
     {
-        @StartIcon
+        @((MarkupString)StartIcon)
     }
     @ChildContent
     @if (!string.IsNullOrEmpty(EndIcon))
     {
-        @EndIcon
+        @((MarkupString)EndIcon)
     }
 </button>
