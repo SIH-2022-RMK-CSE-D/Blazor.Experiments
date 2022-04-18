@@ -1,19 +1,11 @@
-﻿namespace Blazor.Experiments.Components.Enums;
+﻿namespace Blazor.Experiments.Components;
 
 public enum ButtonType : byte
 {
+    [Description("button")]
     Button,
+    [Description("submit")]
     Submit,
+    [Description("reset")]
     Reset
-}
-
-public enum ContainerMaxSize : byte
-{
-    Responsive,
-    Sm,
-    Md,
-    Lg,
-    Xl,
-    Xxl,
-    Fluid
 }
