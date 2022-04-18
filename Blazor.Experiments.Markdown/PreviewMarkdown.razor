@@ -1,7 +1,9 @@
-﻿@using Markdig
+﻿@namespace Blazor.Experiments.Markdown
+
+@using Markdig
 @inherits CustomComponentBase
 
-<div class="@Class" style="@Style">
+<div class="@Class" style="@Style bg-light">
     @MarkdownContent
 </div>
 
@@ -10,5 +12,5 @@
     [Parameter]
     public string Content { get; set; }
 
-    private MarkupString MarkdownContent => new MarkupString(Markdown.ToHtml(Content, new MarkdownPipelineBuilder().UseAdvancedExtensions().Build()));
+    private MarkupString MarkdownContent => new MarkupString(Markdown.ToHtml(Content ?? "" , new MarkdownPipelineBuilder().UseAdvancedExtensions().Build()));
 }

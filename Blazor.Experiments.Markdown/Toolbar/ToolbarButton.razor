@@ -1,0 +1,16 @@
+﻿@namespace Blazor.Experiments.Markdown
+
+@using Blazor.Experiments.Components.Extensions
+@inherits CustomComponentBase
+
+<button class=@Class style=@Style type=@ButtonType.ToDescriptionString() @onclick="OnClick" @onclick:preventDefault=OnClick.HasDelegate>
+    @ChildContent
+</button>
+
+@code {    
+    [Parameter]
+    public ButtonType ButtonType { get; set; }
+
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+}
