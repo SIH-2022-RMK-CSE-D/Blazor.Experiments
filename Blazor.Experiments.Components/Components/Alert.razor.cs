@@ -7,7 +7,7 @@ public partial class Alert
                                                   .AddClass("alert-dismissible", Closable)
                                                   .AddClass("alert-important", Important)
                                                   .AddClass(Class)
-                                                  .ToString();
+                                                  .Build();
 
     [Parameter]
     public Color Color { get; set; }
@@ -32,6 +32,9 @@ public partial class Alert
 
     [Parameter]
     public RenderFragment MessageContent { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
 
     [Parameter]
     public EventCallback<MouseEventArgs> OnClick { get; set; }

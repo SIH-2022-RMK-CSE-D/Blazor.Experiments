@@ -8,6 +8,6 @@ public abstract class CustomComponentBase : ComponentBase
     [Parameter]
     public string Style { get; set; }
 
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> UserAttributes { get; set; } = new Dictionary<string, object>();
 }

@@ -2,7 +2,8 @@
 
 @inherits CustomComponentBase
 
-<button @onclick=OnClick 
+<button @attributes="@UserAttributes"
+        @onclick=OnClick 
         type="@ButtonType.ToDescriptionString()" 
         class="@ClassName" 
         style="@Style"
