@@ -1,13 +1,10 @@
 ﻿@namespace Blazor.Experiments.Markdown
 
-@using Blazor.Experiments.Components
-@using Microsoft.AspNetCore.Components.Forms
-@using System.Linq.Expressions
-
 @inherits CustomComponentBase
+
 @if (ShowPreview)
 {
-    <div class="row @Class p-2">
+    <div class="row @Class p-2" style="@Style">
         @if (ToolbarContent != null)
         {
             <div class="col-12">
@@ -20,52 +17,32 @@
             @TextArea
         </div>
         <div class="col-sm-12 col-md-6">
-            <PreviewMarkdown Class="container bg-dark p-4" Content="@Value" />
+            <PreviewMarkdown Class="@PreviewClassName" Style="@PreviewStyles" Content="@Value" />
         </div>
     </div>
 }
 else
 {
-    @TextArea
+    <div class="row @Class p-2" style="@Style">
+        @if (ToolbarContent != null)
+        {
+            <div class="col-12">
+                <div class="btn-toolbar mb-2">
+                    @ToolbarContent
+                </div>
+            </div>
+        }
+        <div class="col-12">
+            @TextArea
+        </div>
+    </div>
 }
-<div class="row">
-    
-</div>
 
 @code 
 {
-    private FieldIdentifier _fieldIdentifier;
-    private string _fieldCssClasses => CascadedEditContext?.FieldCssClass(_fieldIdentifier) ?? "";
-
-    private RenderFragment TextArea => @<textarea @oninput="@HandleInput" class="w-100 @Class @_fieldCssClasses" style="min-height:83vh;max-height:83vh;@Style">@(Value ?? "")</textarea>
-    ;
-
-    [CascadingParameter] 
-    private EditContext CascadedEditContext { get; set; }
-
-    [Parameter]
-    public string Value { get; set; }
-
-    [Parameter]
-    public bool ShowPreview { get; set; } = true;
-
-    [Parameter]
-    public EventCallback<string> ValueChanged { get; set; }
-
-    [Parameter] 
-    public Expression<Func<string>> ValueExpression { get; set; }
-
-    [Parameter]
-    public RenderFragment ToolbarContent { get; set; }
-
-    protected override void OnInitialized()
-    {
-        _fieldIdentifier = FieldIdentifier.Create(ValueExpression);
-    }
-
-    public async Task HandleInput(ChangeEventArgs args)
-    {
-        await ValueChanged.InvokeAsync(args.Value.ToString());
-        CascadedEditContext?.NotifyFieldChanged(_fieldIdentifier);
-    }
+    private RenderFragment TextArea => @<textarea @oninput = "@HandleInput" 
+                                                  class="w-100 @TextAreaClass @_fieldCssClasses" 
+                                                  style="min-height:83vh;max-height:83vh;@TextAreaStyles">
+                                                        @(Value ?? "")
+                                        </textarea>;
 }
