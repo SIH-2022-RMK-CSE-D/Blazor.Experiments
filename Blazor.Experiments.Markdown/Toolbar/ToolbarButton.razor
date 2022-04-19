@@ -7,9 +7,12 @@
     @ChildContent
 </button>
 
-@code {    
+@code {
     [Parameter]
     public ButtonType ButtonType { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
 
     [Parameter]
     public EventCallback OnClick { get; set; }

@@ -2,6 +2,13 @@
 
 @inherits CustomComponentBase
 
-<div class="btn-group me-2 @Class" style="@Style">
+<div class="@ClassName" style="@Style">
     @ChildContent
 </div>
+
+@code {
+    protected string ClassName => new CssBuilder().AddClass("btn-group").AddClass("me-2").AddClass(Class).Build();
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

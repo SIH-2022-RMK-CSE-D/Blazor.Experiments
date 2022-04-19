@@ -1,4 +1,11 @@
 ﻿@inherits CustomComponentBase
-<div class="page">
+<div class="@ClassName" style="@Style">
     @ChildContent
 </div>
+
+@code {
+    protected string ClassName => new CssBuilder().AddClass("page").AddClass(Class).Build();
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

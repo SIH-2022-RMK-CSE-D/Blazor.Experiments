@@ -2,7 +2,7 @@
 
 @using Microsoft.AspNetCore.Components.Routing
 @inherits CustomComponentBase
-<li class="@ClassName" style="@Style">
+<li @attributes="UserAttributes" class="@ClassName" style="@Style">
     <NavLink class="nav-link" href="@Href" Match="@Match">
         @if (ChildContent == null)
         {
@@ -34,4 +34,7 @@
 
     [Parameter]
     public string NavLinkIcon { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
 }

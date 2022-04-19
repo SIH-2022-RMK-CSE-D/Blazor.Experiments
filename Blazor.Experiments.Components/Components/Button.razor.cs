@@ -2,6 +2,16 @@
 
 public partial class Button
 {
+    protected string ClassName => new CssBuilder().AddClass("btn")
+                                                  .AddClass($"btn-{Size.ToDescriptionString()}")
+                                                  .AddClass($"btn-{Color.ToDescriptionString()}")
+                                                  .AddClass($"btn-{Variant.ToDescriptionString()}", Variant != Variant.Filled)
+                                                  .AddClass($"btn-{BorderVariant.ToDescriptionString()}", BorderVariant != BorderVariant.Default)
+                                                  .AddClass("btn-block", FullWidth)
+                                                  .AddClass("disabled", Disabled)
+                                                  .AddClass(Class)
+                                                  .Build();
+
     [Parameter]
     public string StartIcon { get; set; }
 
@@ -9,7 +19,7 @@ public partial class Button
     public string EndIcon { get; set; }
 
     [Parameter]
-    public string Text { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
     [Parameter]
     public EventCallback<MouseEventArgs> OnClick { get; set; }
@@ -34,14 +44,4 @@ public partial class Button
 
     [Parameter]
     public bool Disabled { get; set; }
-
-    protected string ClassName => new CssBuilder().AddClass("btn")
-                                                  .AddClass($"btn-{Size.ToDescriptionString()}")
-                                                  .AddClass($"btn-{Color.ToDescriptionString()}")
-                                                  .AddClass($"btn-{Variant.ToDescriptionString()}", Variant != Variant.Filled)
-                                                  .AddClass($"btn-{BorderVariant.ToDescriptionString()}", BorderVariant != BorderVariant.Default)
-                                                  .AddClass("btn-block", FullWidth)
-                                                  .AddClass("disabled", Disabled)
-                                                  .AddClass(Class)
-                                                  .ToString();
 }
